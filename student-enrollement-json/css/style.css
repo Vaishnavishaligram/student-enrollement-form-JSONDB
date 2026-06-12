@@ -1,0 +1,226 @@
+/* ============================================================
+   style.css  –  Student Enrollment Form (JSONdb version)
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-dark:   #1a3a5c;
+  --blue-mid:    #2563a8;
+  --blue-light:  #dbeafe;
+  --accent:      #f59e0b;
+  --success:     #16a34a;
+  --error:       #dc2626;
+  --bg:          #f0f4f9;
+  --card-bg:     #ffffff;
+  --text:        #1e293b;
+  --muted:       #64748b;
+  --border:      #cbd5e1;
+  --disabled-bg: #f1f5f9;
+  --radius:      8px;
+  --shadow:      0 4px 24px rgba(26,58,92,.10);
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 48px;
+  gap: 24px;
+}
+
+/* ── Header ── */
+.page-header { text-align: center; }
+.school-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue-dark);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 40px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.page-header h1 { font-size: 1.85rem; font-weight: 700; color: var(--blue-dark); }
+.page-header p  { color: var(--muted); font-size: .875rem; margin-top: 4px; }
+
+/* ── Cards ── */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 680px;
+  overflow: hidden;
+}
+.card-header {
+  background: var(--blue-dark);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.card-header .icon {
+  width: 34px; height: 34px;
+  background: rgba(255,255,255,.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .95rem;
+}
+.card-header h2    { color: #fff; font-size: .95rem; font-weight: 600; }
+.card-header span  { color: rgba(255,255,255,.6); font-size: .78rem; }
+.card-body         { padding: 24px 24px 8px; }
+
+/* ── Banner ── */
+#statusBanner {
+  display: none;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: .875rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+  border-left: 4px solid transparent;
+}
+#statusBanner.success { background:#dcfce7; border-color:var(--success); color:#14532d; }
+#statusBanner.error   { background:#fee2e2; border-color:var(--error);   color:#7f1d1d; }
+#statusBanner.info    { background:var(--blue-light); border-color:var(--blue-mid); color:var(--blue-dark); }
+
+/* ── Form grid ── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+}
+.form-group      { display: flex; flex-direction: column; gap: 5px; }
+.form-group.full { grid-column: 1 / -1; }
+
+label {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+label .required { color: var(--error); margin-left: 2px; }
+.pk-tag {
+  font-style: normal;
+  color: var(--blue-mid);
+  font-size: .68rem;
+  margin-left: 4px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: .9rem;
+  color: var(--text);
+  background: #fff;
+  transition: border-color .18s, box-shadow .18s, background .18s;
+  outline: none;
+  font-family: inherit;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--blue-mid);
+  box-shadow: 0 0 0 3px rgba(37,99,168,.12);
+}
+textarea { resize: vertical; min-height: 76px; }
+
+input:disabled, select:disabled, textarea:disabled {
+  background: var(--disabled-bg);
+  color: var(--muted);
+  cursor: not-allowed;
+  border-color: #e2e8f0;
+}
+
+#roll_no:not(:disabled) {
+  border-color: var(--blue-mid);
+  background: var(--blue-light);
+  font-weight: 600;
+}
+
+.pk-wrap { position: relative; }
+
+.divider { height: 1px; background: var(--border); margin: 20px 0 16px; }
+
+/* ── Buttons ── */
+.btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 0 24px 24px;
+}
+.btn {
+  flex: 1;
+  padding: 11px 16px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .18s, transform .12s, box-shadow .18s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  min-width: 90px;
+}
+.btn:disabled { opacity: .38; cursor: not-allowed; }
+.btn:not(:disabled):active { transform: translateY(1px); }
+
+.btn-save   { background: var(--blue-mid); color: #fff; }
+.btn-save:not(:disabled):hover   { background: #1d4e8e; box-shadow: 0 3px 10px rgba(37,99,168,.3); }
+.btn-update { background: var(--accent); color: #1a1a1a; }
+.btn-update:not(:disabled):hover { background: #d97706; box-shadow: 0 3px 10px rgba(245,158,11,.3); }
+.btn-reset  { background: #fff; color: var(--blue-dark); border: 1.5px solid var(--border); }
+.btn-reset:not(:disabled):hover  { background: var(--bg); }
+
+/* ── Records Table ── */
+.table-card { max-width: 780px; }
+.table-wrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .82rem;
+}
+thead tr { background: var(--blue-light); }
+th {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--blue-dark);
+  white-space: nowrap;
+}
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+tbody tr:hover { background: #f8fafc; }
+.addr { max-width: 180px; word-break: break-word; }
+.empty-msg { text-align: center; color: var(--muted); padding: 24px; }
+
+/* ── Footer ── */
+.page-footer { font-size: .73rem; color: var(--muted); text-align: center; }
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: 1; }
+  .card-body { padding: 18px 14px 8px; }
+  .btn-row   { padding: 0 14px 18px; }
+  .page-header h1 { font-size: 1.4rem; }
+}
